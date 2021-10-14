@@ -1,0 +1,6 @@
+nedbg.name=Curiosity Nano (nEDBG, debug chip: ATSAMD21E18)
+nedbg.communication=usb
+nedbg.protocol=curiosity_updi
+nedbg.program.protocol=curiosity_updi
+nedbg.program.tool=avrdude
+nedbg.program.extra_params=-Pusb

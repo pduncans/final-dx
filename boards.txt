@@ -1,0 +1,134 @@
+# See: https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
+
+
+menu.chip=Chip
+
+
+
+
+
+##############################################################
+
+# BOARD NAMES
+
+avrda.name=AVR DA-series (no bootloader)
+
+
+##############################################################
+
+
+
+##########################################################################
+#                                                                        #
+###                 ###  #     # ####      ####   ###                  ###
+#####              #   # #     # #   #     #   # #   #               #####
+#######            #####  #   #  ####  ### #   # #####             #######
+#####              #   #   # #   # #       #   # #   #               #####
+###                #   #    #    #  #      ####  #   #                 ###
+#________________________________________________________________________#
+
+
+################################
+# Constant across all settings #
+################################
+
+avrda.upload.tool=avrdude
+
+# Build settings
+avrda.build.board=avrda
+avrda.build.core=dxcore
+avrda.build.text_section_start=.text=0x0
+avrda.build.extra_flags={build.millis} -DCLOCK_SOURCE={build.clocksource} {bootloader.appspm}
+avrda.build.export_merged_output=false
+avrda.build.mcupostfix=
+
+# Bootloading settings
+avrda.bootloader.tool=avrdude
+avrda.bootloader.WDTCFG=0x00
+avrda.bootloader.BODCFG={bootloader.bodlevbits}{bootloader.bodmodebits}
+avrda.bootloader.SYSCFG0=0b1100{bootloader.resetpinbits}0{bootloader.eesavebit}
+avrda.bootloader.CODESIZE=0x00
+avrda.bootloader.BOOTSIZE=0x01
+avrda.bootloader.avrdudestring=
+avrda.bootloader.pymcuprogstring=-aerase
+
+################################
+# Tools Submenu Options        #
+################################
+
+
+#####Need to keep settings but can remove menu 
+
+# App SPM
+avrda.menu.appspm.no=Disabled
+avrda.menu.appspm.no.bootloader.appspm=
+avrda.menu.appspm.no.bootloader.BOOTSIZE=0x00
+avrda.menu.appspm.16plus=Above 16k
+avrda.menu.appspm.16plus.bootloader.appspm=-DSPM_FROM_APP=32
+avrda.menu.appspm.16plus.bootloader.CODESIZE=32
+avrda.menu.appspm.24plus=Above 24k
+avrda.menu.appspm.24plus.bootloader.appspm=-DSPM_FROM_APP=48
+avrda.menu.appspm.24plus.bootloader.CODESIZE=48
+avrda.menu.appspm.32plus=Above 32k (AVR128/64 only)
+avrda.menu.appspm.32plus.bootloader.appspm=-DSPM_FROM_APP=64
+avrda.menu.appspm.32plus.bootloader.CODESIZE=64
+avrda.menu.appspm.48plus=Above 48k (AVR128/64 only)
+avrda.menu.appspm.48plus.bootloader.appspm=-DSPM_FROM_APP=96
+avrda.menu.appspm.48plus.bootloader.CODESIZE=96
+avrda.menu.appspm.56plus=Above 56k (AVR128/64 only)
+avrda.menu.appspm.56plus.bootloader.appspm=-DSPM_FROM_APP=112
+avrda.menu.appspm.56plus.bootloader.CODESIZE=112
+avrda.menu.appspm.64plus=Above 64k (AVR128 only)
+avrda.menu.appspm.64plus.bootloader.appspm=-DSPM_FROM_APP=128
+avrda.menu.appspm.64plus.bootloader.CODESIZE=128
+avrda.menu.appspm.96plus=Above 96k (AVR128 only)
+avrda.menu.appspm.96plus.bootloader.appspm=-DSPM_FROM_APP=192
+avrda.menu.appspm.96plus.bootloader.CODESIZE=192
+avrda.menu.appspm.112plus=Above 112k (AVR128 only)
+avrda.menu.appspm.112plus.bootloader.appspm=-DSPM_FROM_APP=224
+avrda.menu.appspm.112plus.bootloader.CODESIZE=224
+avrda.menu.appspm.full=Anywhere
+avrda.menu.appspm.full.bootloader.appspm=-DSPM_FROM_APP=-1
+
+
+# Chip (pins and memory size)
+avrda.menu.chip.128DA48=AVR128DA48
+avrda.menu.chip.128DA48.build.mcu=avr128da48
+avrda.menu.chip.128DA48.upload.maximum_size=131072
+avrda.menu.chip.128DA48.upload.maximum_data_size=16384
+avrda.menu.chip.128DA48.build.variant=48pin-standard
+
+
+# Clock Speed + Source
+avrda.menu.clock.24internal=24 MHz internal
+avrda.menu.clock.24internal.build.f_cpu=24000000L
+avrda.menu.clock.24internal.build.speed=24
+avrda.menu.clock.24internal.build.clocksource=0
+
+
+
+
+
+# EESAVE option
+avrda.menu.eesave.enable=EEPROM retained
+avrda.menu.eesave.enable.bootloader.eesavebit=1
+avrda.menu.eesave.disable=EEPROM not retained
+avrda.menu.eesave.disable.bootloader.eesavebit=0
+
+# Reset pin as GPIO option
+avrda.menu.resetpin.reset=Hardware Reset (recommended)
+avrda.menu.resetpin.reset.bootloader.resetpinbits=10
+avrda.menu.resetpin.input=Input (no output, ever)
+avrda.menu.resetpin.input.bootloader.resetpinbits=00
+
+# millis/micros timing source
+# TCD0 and RTC not yet supported
+avrda.menu.millis.tcb2=TCB2
+
+avrda.build.millis=-DMILLIS_USE_TIMER{build.millistimer}
+
+avrda.menu.millis.tcb2.build.millistimer=B2
+
+avrda.menu.millis.disabled.build.millistimer=NONE
+
+
